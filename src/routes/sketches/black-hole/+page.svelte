@@ -81,8 +81,8 @@
 </script>
 
 <svelte:head>
-    <title>Cave Generation</title>
-    <meta name="description" content="Cave Generation"/>
+    <title>Black Hole</title>
+    <meta name="description" content="Black Hole"/>
 </svelte:head>
 
 <SlidingPanel gap="1em" width={400} onclose={handleCloseEdit} open={$editConfig.isEditing} side="right">

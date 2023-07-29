@@ -142,8 +142,8 @@
 </script>
 
 <svelte:head>
-    <title>Cave Generation</title>
-    <meta name="description" content="Cave Generation"/>
+    <title>Quadratic Besier Curve</title>
+    <meta name="description" content="Quadratic Besier Curve"/>
 </svelte:head>
 
 <SlidingPanel gap="1em" width={400} onclose={handleCloseEdit} open={$editConfig.isEditing} side="right">
