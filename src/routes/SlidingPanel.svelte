@@ -2,9 +2,8 @@
     import Icon from "@iconify/svelte";
     import IconButton from "./IconButton.svelte";
     export let open;
-    export let side;
-    export let overflow;
-    export let background;
+    export let side = "right";
+    export let overflow = "hidden";
     export let width;
     export let gap;
     export let onclose;
@@ -18,7 +17,7 @@
 </script>
 
 <div class="container"
-     style="right: {right}; left: {left}; width: {width}px; transform: translate({translate}); background: {background}; overflow: {overflow}; box-shadow: {shadow}">
+     style="right: {right}; left: {left}; width: min(100%, {width}px); transform: translate({translate}); overflow: {overflow}; box-shadow: {shadow}">
     <div>
         <div class="close-icon-container">
             <IconButton on:click={onclose}>
@@ -31,20 +30,21 @@
     </div>
 </div>
 
-<style>
+<style lang="postcss">
     .container {
         position: fixed;
         top: 0;
         bottom: 0;
         transition: 0.3s ease-out;
         z-index: 999;
+        background-color: theme(colors.gray.800);
     }
 
     .container > div {
         display: flex;
         flex-direction: column;
         height: 100%;
-        color: var(--color-white);
+        color: theme(colors.white);
     }
 
     .close-icon-container {

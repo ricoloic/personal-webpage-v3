@@ -4,32 +4,33 @@
     export let onclose;
 </script>
 
-<SlidingPanel background="var(--color-gray-800)" gap="1em" onclose={onclose} side="left" width={400} open={open}>
+<SlidingPanel gap="1em" onclose={onclose} side="left" width={400} open={open}>
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li class="p-left"><a href="/">Cubic Besier Curve</a></li>
-            <li class="p-left"><a href="/">Quadratic Besier Curve</a></li>
-            <li class="p-left"><a href="/">Black Hole</a></li>
-            <li class="p-left"><a href="/">Cave Generation</a></li>
-            <li class="p-left"><a href="/">Chaos Game</a></li>
-            <li class="p-left"><a href="/">Circular Motion</a></li>
-            <li class="p-left"><a href="/">Flocking</a></li>
-            <li class="p-left"><a href="/">Flow Field</a></li>
-            <li class="p-left"><a href="/">Maurer Rose</a></li>
-            <li class="p-left"><a href="/">Mouse Confetti</a></li>
+            <li class="p-left"><a href="/sketches/cubic-besier-curve">Cubic Besier Curve</a></li>
+            <li class="p-left"><a href="/sketches/quadratic-besier-curve">Quadratic Besier Curve</a></li>
+            <li class="p-left"><a href="/sketches/black-hole">Black Hole</a></li>
+            <li class="p-left"><a href="/sketches/cave-generation">Cave Generation</a></li>
+            <li class="p-left"><a href="/sketches/chaos-game">Chaos Game</a></li>
+            <li class="p-left"><a href="/sketches/circular-motion">Circular Motion</a></li>
+            <li class="p-left"><a href="/sketches/flocking">Flocking</a></li>
+            <li class="p-left"><a href="/sketches/flow-field">Flow Field</a></li>
+            <li class="p-left"><a href="/sketches/maurer-rose">Maurer Rose</a></li>
+            <li class="p-left"><a href="/sketches/mouse-confetti">Mouse Confetti</a></li>
             <li class="p-left"><a href="/sketches/mouse-follow">Mouse Follow</a></li>
-            <li class="p-left"><a href="/">Times Table</a></li>
+            <li class="p-left"><a href="/sketches/times-table">Times Table</a></li>
         </ul>
     </nav>
 </SlidingPanel>
 
-<style>
+<style lang="postcss">
     ul {
-        color: var(--color-white);
+        color: theme(colors.white);
         list-style-type: none;
         line-height: 1;
         overflow-x: hidden;
+        padding-left: 1em;
     }
 
     li {
@@ -43,7 +44,7 @@
         margin-bottom: 10px;
 
         cursor: pointer;
-        font-size: 1em;
+        font-size: 1.5em;
     }
 
     li:hover {

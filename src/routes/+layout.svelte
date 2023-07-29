@@ -1,6 +1,6 @@
 <script>
+	import '../styles.postcss';
 	import Header from './Header.svelte';
-	import './styles.css';
 	import { writable } from 'svelte/store';
 	import { setContext } from 'svelte';
 

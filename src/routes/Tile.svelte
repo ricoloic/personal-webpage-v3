@@ -9,14 +9,14 @@
     </p>
 </a>
 
-<style>
+<style lang="postcss">
     .tile {
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         border-radius: 5px;
         min-height: 350px;
-        color: var(--color-black);
+        color: theme(colors.black);
         padding: 15px;
         position: relative;
         font-size: 1.5rem;
@@ -33,6 +33,6 @@
         display: inline-block;
         margin: 0;
         padding: 5px 10px;
-        background-color: var(--color-gray-100);
+        background-color: theme(colors.gray.100);
     }
 </style>

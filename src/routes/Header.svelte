@@ -27,7 +27,7 @@
         <Icon icon="carbon:menu" width={40} height={40}/>
     </IconButton>
 
-    <h2>
+    <h2 id="title">
         Rico Generative Arts
     </h2>
 
@@ -40,7 +40,13 @@
     {/if}
 </header>
 
-<style>
+<style lang="postcss">
+    @media (width < 500px) {
+        #title {
+            display: none;
+        }
+    }
+
     header {
         position: sticky;
         display: flex;
@@ -49,7 +55,7 @@
         align-items: center;
         padding: 10px;
         gap: 20px;
-        background-color: var(--color-white);
+        background-color: theme(colors.white);
         z-index: 999;
     }
 </style>

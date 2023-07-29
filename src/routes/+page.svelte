@@ -70,46 +70,46 @@
 
 <section class="max-width-container">
     <Tiles>
-        <Tile href="/" imageUrl={besierCubicCurvePreview}>
+        <Tile href="/sketches/cubic-besier-curve" imageUrl={besierCubicCurvePreview}>
             Cubic Besier Curve
         </Tile>
-        <Tile href="/" imageUrl={besierQuadraticCurvePreview}>
+        <Tile href="/sketches/quadratic-besier-curve" imageUrl={besierQuadraticCurvePreview}>
             Quadratic Besier Curve
         </Tile>
-        <Tile href="/" imageUrl={blackHolePreview}>
+        <Tile href="/sketches/black-hole" imageUrl={blackHolePreview}>
             Black Hole
         </Tile>
-        <Tile href="/" imageUrl={caveGenerationPreview}>
+        <Tile href="/sketches/cave-generation" imageUrl={caveGenerationPreview}>
             Cave Generation
         </Tile>
-        <Tile href="/" imageUrl={chaosGamePreview}>
+        <Tile href="/sketches/chaos-game" imageUrl={chaosGamePreview}>
             Chaos Game
         </Tile>
-        <Tile href="/" imageUrl={circularMotionPreview}>
+        <Tile href="/sketches/circular-motion" imageUrl={circularMotionPreview}>
             Circular Motion
         </Tile>
-        <Tile href="/" imageUrl={flockingPreview}>
+        <Tile href="/sketches/flocking" imageUrl={flockingPreview}>
             Flocking
         </Tile>
-        <Tile href="/" imageUrl={flowFieldPreview}>
+        <Tile href="/sketches/flow-field" imageUrl={flowFieldPreview}>
             Flow Field
         </Tile>
-        <Tile href="/" imageUrl={maurerRosePreview}>
+        <Tile href="/sketches/maurer-rose" imageUrl={maurerRosePreview}>
             Maurer Rose
         </Tile>
-        <Tile href="/" imageUrl={mouseConfettiPreview}>
+        <Tile href="/sketches/mouse-confetti" imageUrl={mouseConfettiPreview}>
             Mouse Confetti
         </Tile>
         <Tile href="/sketches/mouse-follow" imageUrl={mouseFollowPreview}>
             Mouse Follow
         </Tile>
-        <Tile href="/" imageUrl={timesTablePreview}>
+        <Tile href="/sketches/times-table" imageUrl={timesTablePreview}>
             Times Table
         </Tile>
     </Tiles>
 </section>
 
-<style>
+<style lang="postcss">
     h1 {
         font-size: 4em;
     }
@@ -134,6 +134,10 @@
         margin: auto;
     }
 
+    h1 > a:hover {
+        font-weight: normal;
+    }
+
     a {
         text-decoration-line: underline;
     }
@@ -147,8 +151,8 @@
         padding: 50px;
         display: grid;
         grid-template-columns: 1fr min(1200px, 100%) 1fr;
-        background-color: var(--color-gray-1000);
-        color: var(--color-white);
+        background-color: theme(colors.gray.800);
+        color: theme(colors.white);
     }
 
     .about-container > div {

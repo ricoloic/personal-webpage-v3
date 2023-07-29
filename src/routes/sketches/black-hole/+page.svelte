@@ -1,23 +1,15 @@
 <script>
     import P5 from 'p5-svelte';
     import {getContext, onMount} from "svelte";
-    import {COLOR_PALETTES} from "$lib/colorPalettes.js";
-    import Particle from "./particle";
     import SlidingPanel from "../../SlidingPanel.svelte";
     import Checkbox from "../../Checkbox.svelte";
-    import Range from "../../Range.svelte";
+    import Particle from "./particle.js";
 
     const editConfig = getContext('editConfig');
 
     let clientHeight;
 
     const args = {
-        selectColorPalette: 'happy',
-        particleAmount: 80,
-        showParticles: true,
-        showBlob: true,
-        particleBorder: false,
-        particleAlfa: false,
         darkMode: true,
     };
 
@@ -33,17 +25,29 @@
         /* @type {import(p5-svelte).Sketch} */
         sketch = (p5) => {
             const particles = [];
-            const center = {x: 0, y: 0};
+            const center = { x: 0, y: 0 };
+            const blackHole = p5.createVector(0, 0);
 
             const generateDefault = () => {
                 center.x = p5.width / 2;
                 center.y = p5.height / 2;
+                blackHole.set(center.x, center.y);
+                particles.splice(0, particles.length);
+                const minR = p5.height / 3;
+                for (let i = 0; i <= 5; i += 1) {
+                    const a = p5.map(i, 0, 5, 0, p5.TWO_PI);
+                    const x = p5.cos(a) * minR;
+                    const y = p5.sin(a) * minR;
+                    particles.push(
+                        new Particle(p5, { x: x + center.x, y: y + center.y }, 10, 300)
+                    );
+                }
             };
 
             p5.setup = () => {
                 p5.createCanvas(window.innerWidth, clientHeight).parent('parent');
+                p5.ellipseMode(p5.CENTER);
                 generateDefault();
-                p5.noStroke();
             };
 
             p5.windowResized = () => {
@@ -53,47 +57,36 @@
 
             p5.draw = () => {
                 p5.background(args.darkMode ? 30 : 250);
-                p5.translate(center.x, center.y);
 
-                if (args.particleAmount > particles.length) {
-                    particles.push(new Particle(p5, center, p5.random(COLOR_PALETTES[args.selectColorPalette])));
-                } else if (args.particleAmount < particles.length) {
-                    particles.splice(0, 1);
-                }
-
-                const avg = {x: 0, y: 0};
                 for (let i = 0; i < particles.length; i += 1) {
+                    const force = p5.constructor.Vector.sub(blackHole, particles[i].pos)
+                        .normalize()
+                        .setMag(0.7);
+                    particles[i].applyForce(force);
                     particles[i].update();
-                    if (args.showParticles)
-                        particles[i].show(args.particleBorder, args.particleAlfa);
-                    avg.x += particles[i].pos.x;
-                    avg.y += particles[i].pos.y;
-                    if (particles[i].finished()) particles[i].reset(center);
+                    particles[i].show(args.darkMode);
+                    particles[i].showTrail(args.darkMode, 10);
+                    if (particles[i].lifeTime < 1) particles.splice(i, 1);
                 }
-                avg.x /= particles.length;
-                avg.y /= particles.length;
 
-                if (args.showBlob) {
-                    p5.fill(args.darkMode ? 250 : 30);
-                    p5.circle(avg.x, avg.y, 50);
-                }
+                p5.fill(args.darkMode ? 250 : 30);
+                p5.ellipse(center.x, center.y, 30);
+            };
+
+            p5.mousePressed = () => {
+                particles.push(new Particle(p5, { x: p5.mouseX, y: p5.mouseY }, 10, 300));
             };
         };
     });
 </script>
 
 <svelte:head>
-    <title>Mouse Follow</title>
-    <meta name="description" content="Mouse Following entity"/>
+    <title>Cave Generation</title>
+    <meta name="description" content="Cave Generation"/>
 </svelte:head>
 
 <SlidingPanel gap="1em" width={400} onclose={handleCloseEdit} open={$editConfig.isEditing} side="right">
     <Checkbox title="Dark Mode" bind:value={args.darkMode}/>
-    <Checkbox title="Show Blob" bind:value={args.showBlob}/>
-    <Checkbox title="Show Particle Alfa" bind:value={args.particleAlfa}/>
-    <Checkbox title="Show Particle Border" bind:value={args.particleBorder}/>
-    <Checkbox title="Show Particle" bind:value={args.showParticles}/>
-    <Range title="Particle Amount" min={20} max={300} step={10} bind:value={args.particleAmount}/>
 </SlidingPanel>
 
 <div bind:clientHeight={clientHeight} id="parent">

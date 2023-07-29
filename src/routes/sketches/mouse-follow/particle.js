@@ -7,6 +7,12 @@ export class Particle {
         this.lifespan = 255;
     }
 
+    reset(center) {
+        this.pos = this.p5.createVector(this.p5.mouseX - center.x, this.p5.mouseY - center.y);
+        this.vel = this.p5.createVector(this.p5.random(-1, 1), this.p5.random(1, -1));
+        this.lifespan = 255;
+    }
+
     finished() {
         return this.lifespan < 0;
     }

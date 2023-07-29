@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
     font-family: 'Roboto';
     font-style: normal;
@@ -20,12 +24,8 @@
     --font-body: 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --font-mono: 'Fira Mono', monospace;
 
-    --color-white: white;
-    --color-black: black;
-    --color-gray-100: #EFF2F5;
-    --color-gray-800: #2e3f52;
-    --color-gray-900: #7a858f;
-    --color-gray-1000: #212529;
+    --color-white: theme(colors.white);
+    --color-black: theme(colors.black);
 }
 
 body {
@@ -35,7 +35,7 @@ body {
     font-weight: 400;
     font-family: var(--font-body);
     color: var(--color-black);
-    background-color: var(--color-gray-100);
+    background-color: theme(colors.gray.100);
 }
 
 label {
