@@ -100,9 +100,9 @@
 <SlidingPanel gap="1em" width={400} onclose={handleCloseEdit} open={$editConfig.isEditing} side="right">
     <Checkbox title="Dark Mode" bind:value={args.darkMode}/>
     <Checkbox title="Display Quadtree" bind:value={args.displayQuadTree}/>
-    <Range title="Boid Amount" min={0.1} max={2} step={0.1} bind:value={args.alignmentForce}/>
-    <Range title="Boid Amount" min={0.1} max={1} step={0.1} bind:value={args.cohesionForce}/>
-    <Range title="Boid Amount" min={0.3} max={5} step={0.1} bind:value={args.separationForce}/>
+    <Range title="Alignment Force" min={0.1} max={2} step={0.1} bind:value={args.alignmentForce}/>
+    <Range title="Cohesion Force" min={0.1} max={1} step={0.1} bind:value={args.cohesionForce}/>
+    <Range title="Separation Force" min={0.3} max={5} step={0.1} bind:value={args.separationForce}/>
     <Range title="Boid Amount" min={20} max={500} step={10} bind:value={args.boidAmount}/>
 </SlidingPanel>
 
